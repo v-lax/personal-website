@@ -1,6 +1,6 @@
 import React from 'react';
 // Import the BrowserRouter, Route and Link components
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Link,Redirect } from 'react-router-dom'; 
 import Container from 'react-bootstrap/container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -12,6 +12,7 @@ import HomePage from './Pages/HomePage.js';
 import AboutPage from './Pages/about.js';
 import ProjectsPage from './Pages/projects.js';
 import PhotoPage from './Pages/photo.js';
+import Hero from './components/hero.js';
 
 class App extends React.Component{
   
@@ -52,7 +53,7 @@ class App extends React.Component{
               <Navbar.Toggle aria-controls='navbar-toggle'/>
               <Navbar.Collapse id='navbar-toggle'>
                 <Nav className='ml-auto'>
-                  <Link className='nav-link text-warning' to='/'>Home</Link>
+                  <Link className='nav-link text-warning' to='/Home'>Home</Link>
                   <Link className='nav-link text-warning' to='/About'>About</Link>
                   <Link className='nav-link text-warning' to='/Projects'>Projects</Link>
                   <Link className='nav-link text-warning' to='/Photography'>Photography</Link>
@@ -61,12 +62,14 @@ class App extends React.Component{
                     
             
             </Navbar>           
-
-          <Route path="/" exact render={() => <HomePage Title={this.state.home.Title} Subtitle={this.state.home.Subtitle} />} />
+            <Route exact path="/">
+                <Redirect to="/Home" />
+            </Route>
+          <Route path="/Home" exact render={() => <HomePage Title={this.state.home.Title} Subtitle={this.state.home.Subtitle} />} />
           <Route path="/About" render={() =>  <AboutPage Title={this.state.about.Title} />} />
           <Route path="/Projects" render={() => <ProjectsPage Title={this.state.projects.Title} Subtitle={this.state.projects.Subtitle} />} />
           <Route path="/Photography" render={() => <PhotoPage Title={this.state.photography.Title} />} />
-
+          
             <Footer/>
 
           </Container>
