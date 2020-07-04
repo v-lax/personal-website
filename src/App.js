@@ -62,7 +62,7 @@ class App extends React.Component{
                     
             
             </Navbar>           
-            <Route exact path="/">
+            <Route exact path="/personal-website">
                 <Redirect to="/Home" />
             </Route>
           <Route path="/Home" exact render={() => <HomePage Title={this.state.home.Title} Subtitle={this.state.home.Subtitle} />} />
